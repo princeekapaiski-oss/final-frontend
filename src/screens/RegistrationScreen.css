@@ -1,0 +1,170 @@
+.registration-screen {
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+.registration-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* PATH */
+.section-path {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  color: #65e52a;
+  text-transform: uppercase;
+}
+
+/* TITLE */
+.registration-title {
+  font-family: "TEST Vast", monospace;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 800;
+  color: #65e52a;
+  text-transform: uppercase;
+}
+
+/* FORM */
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 2px solid #65e52a;
+  border-radius: 5px;
+  padding: 12px;
+}
+
+.input-with-icon img {
+  width: 43px;
+  height: 43px;
+  margin-right: 10px;
+}
+
+.input-with-icon input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  color: #65e52a;
+  text-transform: uppercase;
+}
+
+.input-with-icon input::placeholder {
+  color: #65e52a;
+  opacity: 0.6;
+}
+
+/* BUTTON */
+.btn-primary {
+  margin-top: 16px;
+  background: #65e52a;
+  border: none;
+  border-radius: 5px;
+
+  height: 56px;
+
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #000;
+
+  cursor: pointer;
+}
+
+/* FOOTER */
+.registration-footer {
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+  color: #65e52a;
+  text-transform: uppercase;
+    margin-top: -10px;
+}
+
+.registration-footer span {
+  margin-left: 6px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+
+.input-with-icon.password {
+  padding-right: 48px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-btn img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.5;
+}
+
+.eye-btn.active img {
+  opacity: 1;
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ERROR STATE */
+.input-with-icon.error {
+  border-color: #ff6bc4;
+}
+
+.input-with-icon.error input {
+  color: #ff6bc4;
+}
+
+.input-with-icon.error input::placeholder {
+  color: #ff6bc4;
+  opacity: 0.8;
+}
+
+.input-with-icon.error img {
+  filter: brightness(0) saturate(100%)
+    invert(69%) sepia(42%) saturate(4872%)
+    hue-rotate(290deg) brightness(101%) contrast(101%);
+}
+
+.field-error {
+  margin-top: 6px;
+  font-size: 14px;
+  font-family: "JetBrains Mono", monospace;
+  color: #ff6bc4;
+  text-transform: uppercase;
+}
+
+.input-error {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  color: #ff6bc4;
+  margin-top: -8px;
+}

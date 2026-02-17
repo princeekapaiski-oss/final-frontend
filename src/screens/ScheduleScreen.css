@@ -1,0 +1,165 @@
+.schedule-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.schedule-content {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.schedule-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.screen-title {
+
+  font-family: "TEST Vast", monospace;
+  font-size: 42px;
+  line-height: 1;
+
+  color: #65E52A;
+  text-transform: uppercase;
+}
+
+/*КАРТОЧКА*/
+.schedule-card {
+  gap: 12px;
+
+  border: 2px solid #65E52A;
+  border-radius: 10px;
+
+  padding: 12px;
+  box-sizing: border-box;
+
+  color: #65E52A;
+  font-family: "JetBrains Mono", monospace;
+
+
+}
+
+/* Левая колонка */
+.schedule-card__left {
+  min-width: 90px;
+  text-align: center;
+}
+
+.schedule-date {
+  font-size: 15px;
+}
+
+.schedule-time {
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+/* Правая часть */
+.schedule-card__right {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.schedule-title {
+  font-size: 15px;
+}
+
+.schedule-meta {
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.schedule-action {
+  margin-top: 8px;
+
+  height: 40px;
+
+  border: 2px solid #65e52a;
+  border-radius: 5px;
+  background: transparent;
+
+  color: #65e52a;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.schedule-action:active {
+  background: rgba(57, 255, 20, 0.1);
+}
+
+.schedule-action--joined {
+  background: #65E52A;
+  color: #000;
+}
+
+.schedule-action--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+/*НАЗАД*/
+.back-button {
+  position: sticky;
+  bottom: 20px;
+
+  margin-left: auto;
+
+  width: 65px;
+  height: 65px;
+
+  background: #000000;
+  border: 2px solid #65E52A;
+  border-radius: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.back-button img {
+  width: 33px;
+  height: 33px;
+}
+
+.empty-state {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.empty-title {
+  font-family: "TEST Vast", monospace;
+  font-size: 36px;
+  line-height: 1;
+
+  color: #65E52A;
+  text-transform: uppercase;
+
+  margin-bottom: 12px;
+}
+
+.empty-text {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
+
+  color: #65E52A;
+  opacity: 0.8;
+  text-transform: uppercase;
+
+  max-width: 260px;
+}
