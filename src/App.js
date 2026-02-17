@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 import LoginScreen from "./screens/LoginScreen";
@@ -13,27 +13,25 @@ import { useUser } from "./context/UserContext";
 function App() {
   const [screen, setScreen] = useState("loading");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  // Флаг: инициализация ещё не завершена (первый запуск)
+  const isInitializing = useRef(true);
+
   const {
     loading,
-    error,
     isAuthenticated,
-    needsRegistration,
     tryTelegramAuth,
   } = useUser();
 
-  // Инициализация
+  // Инициализация один раз при монтировании
   useEffect(() => {
     const tg = window.Telegram?.WebApp;
     if (tg) {
       tg.ready();
       tg.expand();
-      
-      // Отправка уведомления при старте
-      tg.showAlert("🚀 Приложение запущено! Добро пожаловать!");
     }
 
-    // Пробуем авто-авторизацию через Telegram
     tryTelegramAuth().then((result) => {
+      isInitializing.current = false;
       switch (result) {
         case "ok":
           setScreen("main");
@@ -41,12 +39,7 @@ function App() {
         case "needsRegistration":
           setScreen("registration");
           break;
-        case "noTelegram":
-          // Не в Telegram — показываем логин
-          setScreen("login");
-          break;
         default:
-          // Ошибка — показываем логин
           setScreen("login");
       }
     });
@@ -57,7 +50,7 @@ function App() {
     setScreen("main");
   };
 
-  // Навигация с анимацией перехода
+  // Навигация с анимацией — только между основными экранами (не логин/регистрация)
   const go = (target) => {
     setIsTransitioning(true);
     setTimeout(() => {
@@ -66,8 +59,11 @@ function App() {
     }, 300);
   };
 
-  // Экран загрузки
-  if (screen === "loading" || (loading && !isAuthenticated) || isTransitioning) {
+  // Показываем LoadingScreen только при инициализации или при переходе между страницами
+  // НЕ показываем во время логина/регистрации (иначе экран очищается)
+  const showLoader = screen === "loading" || isTransitioning;
+
+  if (showLoader) {
     return <LoadingScreen message={isTransitioning ? "ПЕРЕХОД..." : "ЗАГРУЗКА..."} />;
   }
 
