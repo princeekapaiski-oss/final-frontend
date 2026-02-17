@@ -1,7 +1,15 @@
 // src/utils/api.js
 
-const API_URL =
-  process.env.REACT_APP_BACKEND_URL || "https://miniapp-backend-oio7.onrender.com";
+// ВАЖНО: в Vercel/Render добавьте переменную REACT_APP_API_URL
+// Значение: https://ВАШ-BACKEND.onrender.com  (без слеша в конце!)
+const API_URL = process.env.REACT_APP_API_URL || process.env.REACT_APP_BACKEND_URL || "";
+
+if (!API_URL) {
+  console.error(
+    "[api.js] REACT_APP_API_URL не задан! " +
+    "Добавьте переменную окружения в настройках Static Site на Render."
+  );
+}
 
 // ─────── helpers ───────
 
