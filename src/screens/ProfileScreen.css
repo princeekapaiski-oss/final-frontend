@@ -186,3 +186,18 @@
   font-size: 12px;
   color: #ff6bc4;
 }
+/* ---------- Save feedback ---------- */
+
+.save-error {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.save-success {
+  color: #65e52a;
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-family: "JetBrains Mono", monospace;
+}
