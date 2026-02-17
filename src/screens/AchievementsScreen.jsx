@@ -4,7 +4,7 @@ import AchievementCard from "../components/AchievementCard/AchievementCard";
 import "./AchievementsScreen.css";
 
 import { useUser } from "../context/UserContext";
-import { fetchMyAchievements } from "../utils/api";
+import { fetchAllAchievements } from "../utils/api";
 import { LEVELS, getCurrentLevel, getProgressPercent } from "../utils/levels";
 
 function AchievementsScreen({ go }) {
@@ -18,13 +18,14 @@ function AchievementsScreen({ go }) {
   useEffect(() => {
     const load = async () => {
       try {
-        const data = await fetchMyAchievements();
+        const data = await fetchAllAchievements();
         const mapped = data.map((a) => ({
           id: a.id,
           title: a.title?.toUpperCase() || "",
           description: a.description?.toUpperCase() || "",
           reward: `+${a.experience} ОЧКОВ`,
-          unlocked: true,
+          imageUrl: a.imageUrl || null,
+          unlocked: a.unlocked === true,
         }));
         setAchievements(mapped);
       } catch (err) {
@@ -35,6 +36,8 @@ function AchievementsScreen({ go }) {
     };
     load();
   }, []);
+
+  const unlockedCount = achievements.filter((a) => a.unlocked).length;
 
   return (
     <div className="achievements-screen">
@@ -58,11 +61,20 @@ function AchievementsScreen({ go }) {
 
         <div className="screen-title-achievements">БАЗА АРТЕФАКТОВ</div>
 
+        {/* Счётчик прогресса */}
+        {!loading && achievements.length > 0 && (
+          <div className="achievements-counter">
+            ПОЛУЧЕНО: {unlockedCount} / {achievements.length}
+          </div>
+        )}
+
         {loading ? (
-          <div style={{ textAlign: "center", padding: 20, opacity: 0.7 }}>ЗАГРУЗКА...</div>
+          <div style={{ textAlign: "center", padding: 20, opacity: 0.7 }}>
+            ЗАГРУЗКА...
+          </div>
         ) : achievements.length === 0 ? (
           <div style={{ textAlign: "center", padding: 20, opacity: 0.7 }}>
-            ДОСТИЖЕНИЙ ПОКА НЕТ — УЧАСТВУЙ В АКТИВНОСТЯХ!
+            ДОСТИЖЕНИЯ НЕ НАСТРОЕНЫ
           </div>
         ) : (
           <div className="achievements-list">

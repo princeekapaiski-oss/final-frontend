@@ -58,6 +58,16 @@
   text-transform: uppercase;
 }
 
+
+.achievements-counter {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: -8px;
+}
+
 .achievements-list {
   display: flex;
   flex-direction: column;

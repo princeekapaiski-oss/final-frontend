@@ -146,6 +146,11 @@ export async function fetchMyAchievements() {
   return request("/achievements/my");
 }
 
+/** Все достижения + флаг unlocked (полученные идут первыми) */
+export async function fetchAllAchievements() {
+  return request("/achievements/all");
+}
+
 // ─────── Utils ───────
 
 export function isLoggedIn() {
