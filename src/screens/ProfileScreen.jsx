@@ -14,7 +14,14 @@ function ProfileScreen({ go }) {
   const { user, refreshUser } = useUser();
   const currentLevel = getCurrentLevel(LEVELS, user?.experience || 0);
 
-  // Начальное состояние из данных пользователя
+  // Определяем роль пользователя
+  const getUserRole = () => {
+    if (!user) return "УЧАСТНИК";
+    // Можно добавить логику определения роли через API
+    // Например: if (user.isAdmin) return "АДМИНИСТРАТОР"
+    return "УЧАСТНИК";
+  };
+
   const initProfile = () => ({
     firstName:  user?.firstName  || "",
     lastName:   user?.lastName   || "",
@@ -29,7 +36,6 @@ function ProfileScreen({ go }) {
   const [draftProfile,  setDraftProfile]  = useState(initProfile);
   const [errors,        setErrors]        = useState({});
 
-  // Подтягиваем данные если user подгрузился позже
   useEffect(() => {
     if (user) {
       const p = initProfile();
@@ -38,7 +44,6 @@ function ProfileScreen({ go }) {
     }
   }, [user]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Валидация
   useEffect(() => {
     const e = {};
     if (!draftProfile.firstName || draftProfile.firstName.length < 2)
@@ -108,9 +113,7 @@ function ProfileScreen({ go }) {
             <div className="profile-id">ID: {user?.id || "—"}</div>
 
             <div className="profile-bottom">
-              <div className="profile-role">
-                {savedProfile.direction || "НАПРАВЛЕНИЕ НЕ УКАЗАНО"}
-              </div>
+              <div className="profile-role">{getUserRole()}</div>
               <div className="profile-level">
                 УРОВЕНЬ: {currentLevel?.level || 1}
               </div>
